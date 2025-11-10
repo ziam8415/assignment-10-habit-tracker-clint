@@ -11,16 +11,24 @@ const AddHabit = () => {
     const title = e.target.title.value;
     const description = e.target.description.value;
     const category = e.target.category.value;
-    const date = e.target.date.value;
     const image = e.target.imageUrl.value;
     const creatorName = user.displayName;
     const creatorEmail = user.email;
+    const time = Date.now();
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    const formattedDate = `${day}/${month}/${year}`;
+    console.log(formattedDate);
 
     const habit = {
       title,
       description,
       category,
-      date,
+      time,
+      formattedDate,
       image,
       creatorName,
       creatorEmail,
@@ -106,7 +114,7 @@ const AddHabit = () => {
         </div>
 
         {/* Reminder Time */}
-        <div>
+        {/* <div>
           <label className="block text-xl font-medium text-gray-700 mb-1">
             Date
           </label>
@@ -115,7 +123,7 @@ const AddHabit = () => {
             name="date"
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
           />
-        </div>
+        </div> */}
 
         {/* Upload Image URL */}
         <div>

@@ -6,9 +6,11 @@ import Home from "./Page/Home";
 import AddHabit from "./Page/AddHabit";
 import MyHabits from "./Page/MyHabits";
 import PublicHabit from "./Page/PublicHabit";
+
 import Login from "./Page/Login";
 import SingUp from "./Page/SingUp";
 import PrivetRoute from "./PrivetRoute";
+import See from "./Page/See";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
       {
         path: "/publicHabits",
         element: <PublicHabit></PublicHabit>,
+      },
+      {
+        path: "/see/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/habit/${params.id}`),
+        element: (
+          <PrivetRoute>
+            <See></See>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/login",

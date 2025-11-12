@@ -11,11 +11,13 @@ import Login from "./Page/Login";
 import SingUp from "./Page/SingUp";
 import PrivetRoute from "./PrivetRoute";
 import See from "./Page/See";
+import NotFound from "./Page/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         index: true,

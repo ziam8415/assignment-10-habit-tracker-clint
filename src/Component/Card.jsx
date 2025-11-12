@@ -130,50 +130,8 @@ const Card = ({ habit, handleDeleteBid }) => {
   return (
     <div className="card bg-white hover:scale-103 w-ful">
       <div>
-        {/* <div>
-          <h2 className="card-title text-3xl text-gray-700 font-bold">
-            {habit.title}
-          </h2>
-          <div className="flex justify-between gap-5 text-xl text-gray-600 font-semibold">
-            <h3>Category : {habit.category}</h3>
-            <h3>Streak : {streak}</h3>
-          </div>
-          <p className="text-gray-500">
-            Habit started at : {habit.formattedDate}
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={() => {
-                handelUpdate();
-              }}
-              className="btn bg-[#EE6983] text-white font-semibold py-2 rounded-lg hover:bg-[#ce313e] transition"
-            >
-              Update
-            </button>
-
-            <button
-              onClick={() => {
-                handleDeleteBid(habit._id);
-              }}
-              className="btn bg-[#850E35] text-white font-semibold py-2 rounded-lg hover:bg-[#e9505d] transition"
-            >
-              Delete
-            </button>
-            <button
-              disabled={isCompletedToday}
-              onClick={handelMarkCompleteBtn}
-              className={`btn bg-[#EE6983] text-white hover:bg-[#dc3856] ${
-                isCompletedToday
-                  ? " btn-accent bg-gray-500  cursor-not-allowed"
-                  : ""
-              }`}
-            >
-              {isCompletedToday ? "Completed Today" : "Mark Complete"}
-            </button>
-          </div>
-        </div> */}
         <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition duration-300 space-y-4">
-          {/* 🔹 Header Section */}
+          {/*  Header Section */}
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
               <Flame className="w-5 h-5 text-pink-500" />
@@ -201,7 +159,7 @@ const Card = ({ habit, handleDeleteBid }) => {
           </div>
 
           {/* 🔹 Action Buttons */}
-          <div className="flex flex-wrap gap-3 mt-4">
+          <div className="flex flex-wrap justify-between mt-4">
             <button
               onClick={handelUpdate}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition"
@@ -215,7 +173,8 @@ const Card = ({ habit, handleDeleteBid }) => {
             >
               <Trash2 className="w-4 h-4" /> Delete
             </button>
-
+          </div>
+          <div className="flex justify-center mt-5">
             <button
               disabled={isCompletedToday}
               onClick={handelMarkCompleteBtn}

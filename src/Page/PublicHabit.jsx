@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import AllHabitCard from "../Component/AllHabitCard";
+import Lottie from "lottie-react";
+import loadingAnim from "../assets/animations/Loading.json";
+import emptyAnim from "../assets/animations/Empty box.json";
 
 const PublicHabit = () => {
   const [allHabits, setAllHabits] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/allHabits")
       .then((res) => res.json())
-      .then((data) => setAllHabits(data));
+      .then((data) => {
+        setAllHabits(data);
+        setIsLoading(false);
+      });
   }, []);
 
   const categories = ["Morning", "Work", "Fitness", "Evening", "study"];
@@ -32,7 +39,7 @@ const PublicHabit = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center ">
       <h1 className="pt-15 pb-5  text-4xl text-gray-700  font-bold">
         Explore Public Habits
       </h1>
@@ -98,11 +105,34 @@ const PublicHabit = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
+      {isLoading && (
+        <div className="flex justify-center items-center h-[300px]">
+          <Lottie animationData={loadingAnim} loop={true} className="w-48" />
+        </div>
+      )}
+
+      {!isLoading && allHabits?.length === 0 && (
+        <div className="flex flex-col justify-center items-center pb-20 text-center">
+          <Lottie animationData={emptyAnim} loop={true} className="w-60" />
+          <p className="text-gray-500 mt-4 text-lg font-semibold">
+            No habits found!
+          </p>
+        </div>
+      )}
+
+      {!isLoading && allHabits?.length > 0 && (
+        <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+          {allHabits.map((d) => (
+            <AllHabitCard key={d._id} habit={d} />
+          ))}
+        </div>
+      )}
+
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
         {allHabits.map((habit) => (
           <AllHabitCard key={habit._id} habit={habit}></AllHabitCard>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

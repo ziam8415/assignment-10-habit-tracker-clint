@@ -115,6 +115,7 @@ const See = () => {
           Current Streak:{" "}
           <span className="text-pink-600 font-semibold">{streak}</span>
         </p>
+        <p className="text-lg text-gray-700 font-medium">Progress</p>
         <progress
           className="progress progress-success w-60"
           value={streak}

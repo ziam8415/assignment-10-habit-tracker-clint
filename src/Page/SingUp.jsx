@@ -24,10 +24,6 @@ const SingUp = () => {
       newErrors.push("Must contain at least one uppercase letter");
     if (!/[a-z]/.test(value))
       newErrors.push("Must contain at least one lowercase letter");
-    if (!/[0-9]/.test(value))
-      newErrors.push("Must contain at least one number");
-    if (!/[!@#$%^&*]/.test(value))
-      newErrors.push("Must contain at least one special character");
 
     setErrors(newErrors);
   };
@@ -69,8 +65,8 @@ const SingUp = () => {
       });
   };
   return (
-    <div className="flex justify-center items-center flex-col  pt-5">
-      <h1 className="text-5xl font-bold pb-5">Sing Up!</h1>
+    <div className="flex justify-center items-center flex-col pb-10 pt-5">
+      <h1 className="text-5xl text-gray-800 font-bold pb-5">Sing Up!</h1>
       <div className="card border bg-base-100 w-full max-w-sm shrink-0 pt-10 shadow-2xl">
         <div className="card-body">
           <form onSubmit={handelSingUp}>

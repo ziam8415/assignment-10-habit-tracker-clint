@@ -20,10 +20,6 @@ const Login = () => {
       newErrors.push("Must contain at least one uppercase letter");
     if (!/[a-z]/.test(value))
       newErrors.push("Must contain at least one lowercase letter");
-    if (!/[0-9]/.test(value))
-      newErrors.push("Must contain at least one number");
-    if (!/[!@#$%^&*]/.test(value))
-      newErrors.push("Must contain at least one special character");
 
     setErrors(newErrors);
   };
@@ -69,8 +65,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col pt-5">
-      <h1 className="text-5xl font-bold pb-5">Login now!</h1>
+    <div className="flex justify-center items-center flex-col pt-5 pb-10">
+      <h1 className="text-5xl text-gray-800 font-bold pb-5">Login now!</h1>
       <div className="card border bg-base-100 w-full max-w-sm shrink-0 pt-10 shadow-2xl">
         <div className="card-body">
           <form onSubmit={handelLogin}>
@@ -112,10 +108,10 @@ const Login = () => {
 
               <div className="mt-2">
                 <Link
-                  to="/forgotpass"
-                  className="text-blue-500 hover:underline"
+                  to="/singup"
+                  className="text-blue-500 hover:text-blue-800"
                 >
-                  Forgot password?
+                  Sign Up
                 </Link>
               </div>
 
@@ -156,10 +152,6 @@ const Login = () => {
             </svg>
             Login with Google
           </button>
-
-          <Link to="/singup" className="text-blue-500 hover:text-blue-800">
-            Sign Up
-          </Link>
         </div>
       </div>
     </div>

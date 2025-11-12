@@ -51,15 +51,13 @@ const Card = ({ habit, handleDeleteBid }) => {
       .then((data) => {
         //console.log("Updated:", data);
         if (data.modifiedCount > 0) {
-          // Swal.fire({
-          //   position: "center",
-          //   icon: "success",
-          //   title: "Your habit has been Updated.",
-          //   showConfirmButton: false,
-          //   timer: 1500,
-          // });
-          // e.target.reset();
-          // modalRef.current.close();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your habit has been Updated.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       })
       .catch((err) => console.error(err));

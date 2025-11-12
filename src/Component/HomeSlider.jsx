@@ -17,7 +17,8 @@ const HomeSlider = () => {
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1557683316-973673baf926",
+      image:
+        "https://images.unsplash.com/photo-1577563682708-4f022ec774fb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1267",
       title: "Track Your Daily Progress",
       text: "Measure growth through action — every day counts!",
     },

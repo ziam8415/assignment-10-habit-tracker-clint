@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import getDailyStreak from "../getDailyStreak";
-import { Star } from "lucide-react";
+import { Calendar, Folder, Flame, Star, CheckCircle } from "lucide-react";
 
 const See = () => {
   const data = useLoaderData();
@@ -53,63 +53,84 @@ const See = () => {
       .then((data) => {
         console.log("Updated:", data);
         if (data.modifiedCount > 0) {
-          // Swal.fire({
-          //   position: "center",
-          //   icon: "success",
-          //   title: "Your habit has been Updated.",
-          //   showConfirmButton: false,
-          //   timer: 1500,
-          // });
-          // e.target.reset();
-          // modalRef.current.close();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your habit has been Updated.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       })
       .catch((err) => console.error(err));
   };
 
   return (
-    <div className="text-center">
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row">
-          <img src={data.image} className="max-w-sm rounded-lg shadow-2xl" />
-          <div>
-            <h1 className="text-5xl font-bold">{data.title}</h1>
-            <p className="text-xl mt-2 text-gray-600 font-bold">
-              Category : {data.category}
-            </p>
-            <p className="py-6">{data.description}</p>
-            <button
-              disabled={isCompletedToday}
-              onClick={handelMarkCompleteBtn}
-              className={`btn btn-primary ${
-                isCompletedToday
-                  ? " btn-accent bg-amber-300  cursor-not-allowed"
-                  : ""
-              }`}
-            >
-              {isCompletedToday ? "Completed Today" : "Mark Complete"}
-            </button>
+    <div className="min-h-screen bg-gray-50 py-10">
+      {/* 🔹 Main Section */}
+      <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md border border-gray-100 p-8 flex flex-col lg:flex-row items-center gap-8">
+        {/* Image */}
+        <img
+          src={data.image}
+          alt={data.title}
+          className="w-full max-w-sm rounded-xl shadow-sm object-cover"
+        />
+
+        {/* Details */}
+        <div className="flex-1 text-center lg:text-left space-y-4">
+          <h1 className="text-4xl font-bold text-gray-800">{data.title}</h1>
+
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-gray-600 font-medium">
+            <span className="flex items-center gap-2">
+              <Folder className="w-5 h-5 text-gray-500" /> {data.category}
+            </span>
+            <span className="flex items-center gap-2">
+              <Flame className="w-5 h-5 text-orange-500" /> {streak} Day Streak
+            </span>
+            <span className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-gray-500" /> {data.date}
+            </span>
           </div>
+
+          <p className="text-gray-600 leading-relaxed">{data.description}</p>
+
+          <button
+            disabled={isCompletedToday}
+            onClick={handelMarkCompleteBtn}
+            className={`flex items-center justify-center gap-2 px-5 py-2 rounded-lg text-white font-medium transition ${
+              isCompletedToday
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-green-500 hover:bg-green-600"
+            }`}
+          >
+            <CheckCircle className="w-5 h-5" />
+            {isCompletedToday ? "Completed Today" : "Mark Complete"}
+          </button>
         </div>
       </div>
 
-      <div>
-        <p>streak : {streak}</p>
+      {/* 🔹 Progress & Streak */}
+      <div className="max-w-4xl mx-auto mt-12 text-center space-y-2">
+        <p className="text-lg text-gray-700 font-medium">
+          Current Streak:{" "}
+          <span className="text-pink-600 font-semibold">{streak}</span>
+        </p>
+        <progress
+          className="progress progress-success w-60"
+          value={streak}
+          max="30"
+        ></progress>
       </div>
 
-      <progress
-        className="progress progress-primary w-56"
-        value={streak}
-        max="30"
-      ></progress>
-
-      <div>
-        <h1 className="text-2xl text-gray-600 font-bold">Creator info</h1>
-        <div className="mx-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
+      {/* 🔹 Creator Info */}
+      <div className="max-w-4xl mx-auto mt-14 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-2xl text-gray-700 font-bold mb-4 text-center">
+          Creator Info
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="table text-gray-600 w-full text-center">
+            <thead className="bg-gray-100">
+              <tr className="text-gray-700">
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
@@ -117,14 +138,13 @@ const See = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
+              <tr className="hover:bg-gray-50">
                 <th>
-                  <Star />
+                  <Star className="w-5 h-5 text-yellow-500 mx-auto" />
                 </th>
-                <td>{data.creatorName}</td>
+                <td className="font-medium">{data.creatorName}</td>
                 <td>{data.creatorEmail}</td>
-                <td>{data.date}</td>
+                <td>{data.formattedDate}</td>
               </tr>
             </tbody>
           </table>

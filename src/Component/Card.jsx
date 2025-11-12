@@ -2,6 +2,14 @@ import React, { use, useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
 import getDailyStreak from "../getDailyStreak";
+import {
+  Calendar,
+  Flame,
+  Folder,
+  Pencil,
+  Trash2,
+  CheckCircle,
+} from "lucide-react";
 
 const Card = ({ habit, handleDeleteBid }) => {
   const [streak, setStreak] = useState(0);
@@ -121,46 +129,106 @@ const Card = ({ habit, handleDeleteBid }) => {
 
   return (
     <div className="card bg-white hover:scale-103 w-ful">
-      <div className="card-body items-center  text-center">
-        <h2 className="card-title text-3xl text-gray-700 font-bold">
-          {habit.title}
-        </h2>
-        <div className="flex justify-between gap-5 text-xl text-gray-600 font-semibold">
-          <h3>Category : {habit.category}</h3>
-          <h3>Streak : {streak}</h3>
-        </div>
-        <p className="text-gray-500">
-          Habit started at : {habit.formattedDate}
-        </p>
-        <div className="flex gap-3">
-          <button
-            onClick={() => {
-              handelUpdate();
-            }}
-            className="btn bg-[#EE6983] text-white font-semibold py-2 rounded-lg hover:bg-[#ce313e] transition"
-          >
-            Update
-          </button>
+      <div>
+        {/* <div>
+          <h2 className="card-title text-3xl text-gray-700 font-bold">
+            {habit.title}
+          </h2>
+          <div className="flex justify-between gap-5 text-xl text-gray-600 font-semibold">
+            <h3>Category : {habit.category}</h3>
+            <h3>Streak : {streak}</h3>
+          </div>
+          <p className="text-gray-500">
+            Habit started at : {habit.formattedDate}
+          </p>
+          <div className="flex gap-3">
+            <button
+              onClick={() => {
+                handelUpdate();
+              }}
+              className="btn bg-[#EE6983] text-white font-semibold py-2 rounded-lg hover:bg-[#ce313e] transition"
+            >
+              Update
+            </button>
 
-          <button
-            onClick={() => {
-              handleDeleteBid(habit._id);
-            }}
-            className="btn bg-[#850E35] text-white font-semibold py-2 rounded-lg hover:bg-[#e9505d] transition"
-          >
-            Delete
-          </button>
-          <button
-            disabled={isCompletedToday}
-            onClick={handelMarkCompleteBtn}
-            className={`btn bg-[#EE6983] text-white hover:bg-[#dc3856] ${
-              isCompletedToday
-                ? " btn-accent bg-gray-500  cursor-not-allowed"
-                : ""
-            }`}
-          >
-            {isCompletedToday ? "Completed Today" : "Mark Complete"}
-          </button>
+            <button
+              onClick={() => {
+                handleDeleteBid(habit._id);
+              }}
+              className="btn bg-[#850E35] text-white font-semibold py-2 rounded-lg hover:bg-[#e9505d] transition"
+            >
+              Delete
+            </button>
+            <button
+              disabled={isCompletedToday}
+              onClick={handelMarkCompleteBtn}
+              className={`btn bg-[#EE6983] text-white hover:bg-[#dc3856] ${
+                isCompletedToday
+                  ? " btn-accent bg-gray-500  cursor-not-allowed"
+                  : ""
+              }`}
+            >
+              {isCompletedToday ? "Completed Today" : "Mark Complete"}
+            </button>
+          </div>
+        </div> */}
+        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition duration-300 space-y-4">
+          {/* 🔹 Header Section */}
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+              <Flame className="w-5 h-5 text-pink-500" />
+              {habit.title}
+            </h2>
+          </div>
+
+          {/* 🔹 Category & Streak */}
+          <div className="flex justify-between items-center text-gray-600 text-lg font-medium border-b border-gray-100 pb-3">
+            <div className="flex items-center gap-2">
+              <Folder className="w-5 h-5 text-gray-500" />
+              <span>{habit.category}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Flame className="w-5 h-5 text-orange-500" />
+              <span>{streak} Day Streak</span>
+            </div>
+          </div>
+
+          {/* 🔹 Start Date */}
+          <div className="flex items-center gap-2 text-gray-500">
+            <Calendar className="w-5 h-5" />
+            <p>Started on {habit.formattedDate}</p>
+          </div>
+
+          {/* 🔹 Action Buttons */}
+          <div className="flex flex-wrap gap-3 mt-4">
+            <button
+              onClick={handelUpdate}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition"
+            >
+              <Pencil className="w-4 h-4" /> Update
+            </button>
+
+            <button
+              onClick={() => handleDeleteBid(habit._id)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-600 font-medium transition"
+            >
+              <Trash2 className="w-4 h-4" /> Delete
+            </button>
+
+            <button
+              disabled={isCompletedToday}
+              onClick={handelMarkCompleteBtn}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
+                isCompletedToday
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-green-100 hover:bg-green-200 text-green-700"
+              }`}
+            >
+              <CheckCircle className="w-4 h-4" />
+              {isCompletedToday ? "Completed Today" : "Mark Complete"}
+            </button>
+          </div>
         </div>
 
         <div>
@@ -260,9 +328,9 @@ const Card = ({ habit, handleDeleteBid }) => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                  className="btn w-full bg-[#FFC4C4] text-gray-800 font-bold py-2 rounded-lg hover:bg-[#efbfc3] transition"
                 >
-                  Add Habit
+                  Update Habit
                 </button>
               </form>
               <div className="modal-action">

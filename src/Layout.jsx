@@ -6,8 +6,10 @@ const Layout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="w-11/12 mx-auto border">
-        <Outlet></Outlet>
+      <div className="bg-[#FCF5EE]">
+        <div className="w-11/12 mx-auto ">
+          <Outlet></Outlet>
+        </div>
       </div>
     </div>
   );

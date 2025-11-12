@@ -1,8 +1,70 @@
-import React, { use, useRef } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
+import getDailyStreak from "../getDailyStreak";
 
 const Card = ({ habit, handleDeleteBid }) => {
+  const [streak, setStreak] = useState(0);
+  const [isCompletedToday, setIsCompletedToday] = useState(false);
+
+  const today = new Date().toLocaleDateString("en-GB").split("/").join("-");
+
+  useEffect(() => {
+    if (habit?.completionHistory) {
+      const newStreak = getDailyStreak(habit.completionHistory);
+      setStreak(newStreak);
+      setIsCompletedToday(habit.completionHistory.includes(today));
+    }
+  }, [habit, today]);
+
+  const handelMarkCompleteBtn = () => {
+    const date = today;
+    const history = habit.completionHistory;
+
+    if (history?.includes(date)) {
+      Swal.fire({
+        icon: "info",
+        title: "Already Completed!",
+        text: "You’ve already marked this habit complete today.",
+        showConfirmButton: true,
+      });
+      return;
+    }
+
+    const completeHistory = [date, ...history];
+
+    setIsCompletedToday(completeHistory.includes(date));
+
+    setStreak(getDailyStreak(completeHistory));
+
+    const update = { completionHistory: completeHistory };
+    //console.log("mark clicked", date, history, update);
+
+    fetch(`http://localhost:3000/habits/${habit._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(update),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log("Updated:", data);
+        if (data.modifiedCount > 0) {
+          // Swal.fire({
+          //   position: "center",
+          //   icon: "success",
+          //   title: "Your habit has been Updated.",
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // });
+          // e.target.reset();
+          // modalRef.current.close();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   //console.log(habit);
   const { user } = use(AuthContext);
   const modalRef = useRef(null);
@@ -60,20 +122,24 @@ const Card = ({ habit, handleDeleteBid }) => {
   };
 
   return (
-    <div className="card bg-neutral text-neutral-content w-ful">
-      <div className="card-body items-center text-center">
-        <h2 className="card-title">{habit.title}</h2>
-        <div className="flex  justify-between gap-5">
+    <div className="card bg-white hover:scale-103 w-ful">
+      <div className="card-body items-center  text-center">
+        <h2 className="card-title text-3xl text-gray-700 font-bold">
+          {habit.title}
+        </h2>
+        <div className="flex justify-between gap-5 text-xl text-gray-600 font-semibold">
           <h3>Category : {habit.category}</h3>
-          <h3>Current Streak</h3>
+          <h3>Streak : {streak}</h3>
         </div>
-        <p>Habit started at {habit.date}</p>
-        <div className="flex gap-1">
+        <p className="text-gray-500">
+          Habit started at : {habit.formattedDate}
+        </p>
+        <div className="flex gap-3">
           <button
             onClick={() => {
               handelUpdate();
             }}
-            className="btn btn-primary"
+            className="btn bg-[#EE6983] text-white font-semibold py-2 rounded-lg hover:bg-[#ce313e] transition"
           >
             Update
           </button>
@@ -82,11 +148,21 @@ const Card = ({ habit, handleDeleteBid }) => {
             onClick={() => {
               handleDeleteBid(habit._id);
             }}
-            className="btn btn-ghost"
+            className="btn bg-[#850E35] text-white font-semibold py-2 rounded-lg hover:bg-[#e9505d] transition"
           >
             Delete
           </button>
-          <button className="btn btn-ghost">Mark Complete</button>
+          <button
+            disabled={isCompletedToday}
+            onClick={handelMarkCompleteBtn}
+            className={`btn bg-[#EE6983] text-white hover:bg-[#dc3856] ${
+              isCompletedToday
+                ? " btn-accent bg-gray-500  cursor-not-allowed"
+                : ""
+            }`}
+          >
+            {isCompletedToday ? "Completed Today" : "Mark Complete"}
+          </button>
         </div>
 
         <div>

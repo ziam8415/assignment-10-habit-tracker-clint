@@ -64,7 +64,11 @@ const Navbar = () => {
               <div tabIndex={0} role="button">
                 <img
                   className="w-[50px] h-[50px]  rounded-full"
-                  src={user.photoURL}
+                  src={
+                    user.photoURL
+                      ? user.photoURL
+                      : "https://i.ibb.co.com/cSgZvYN9/download.png"
+                  }
                   alt=""
                 />
               </div>

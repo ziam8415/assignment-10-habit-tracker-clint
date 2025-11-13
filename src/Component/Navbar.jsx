@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { use } from "react";
 import { Menu, LogIn, UserPlus, LogOut } from "lucide-react";
-
+import "./nav.css";
 const Navbar = () => {
   const { user, singOutUser, loading } = use(AuthContext);
 

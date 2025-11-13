@@ -8,7 +8,7 @@ const See = () => {
   const data = useLoaderData();
   const [streak, setStreak] = useState(0);
   const [isCompletedToday, setIsCompletedToday] = useState(false);
-  console.log(data);
+  //console.log(data);
 
   const today = new Date().toLocaleDateString("en-GB").split("/").join("-");
 
@@ -19,7 +19,7 @@ const See = () => {
       setIsCompletedToday(data.completionHistory.includes(today));
     }
   }, [data, today]);
-  console.log("show", isCompletedToday);
+  //console.log("show", isCompletedToday);
 
   const handelMarkCompleteBtn = () => {
     const date = today;
@@ -67,7 +67,7 @@ const See = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-10">
-      {/* 🔹 Main Section */}
+      {/* Main Section */}
       <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md border border-gray-100 p-8 flex flex-col lg:flex-row items-center gap-8">
         {/* Image */}
         <img
@@ -109,13 +109,15 @@ const See = () => {
         </div>
       </div>
 
-      {/* 🔹 Progress & Streak */}
+      {/* Progress & Streak */}
       <div className="max-w-4xl mx-auto mt-12 text-center space-y-2">
         <p className="text-lg text-gray-700 font-medium">
           Current Streak:{" "}
-          <span className="text-pink-600 font-semibold">{streak}</span>
+          <span className="text-pink-600 font-semibold">{streak}</span> days
         </p>
-        <p className="text-lg text-gray-700 font-medium">Progress</p>
+        <p className="text-lg mt-5 text-gray-700 font-medium">
+          Progress in this mounth
+        </p>
         <progress
           className="progress progress-success w-60"
           value={streak}

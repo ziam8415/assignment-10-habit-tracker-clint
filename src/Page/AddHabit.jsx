@@ -1,7 +1,15 @@
 import React, { use } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
-import { PlusCircle, Image, BookOpen, Tag, Mail, User } from "lucide-react";
+import {
+  PlusCircle,
+  Image,
+  BookOpen,
+  Tag,
+  Mail,
+  User,
+  Clock,
+} from "lucide-react";
 
 const AddHabit = () => {
   const { user } = use(AuthContext);
@@ -13,6 +21,7 @@ const AddHabit = () => {
     const description = e.target.description.value;
     const category = e.target.category.value;
     const image = e.target.imageUrl.value;
+    const reminderTimer = e.target.time.value;
     const creatorName = user.displayName;
     const creatorEmail = user.email;
     const time = Date.now();
@@ -29,6 +38,7 @@ const AddHabit = () => {
       description,
       category,
       time,
+      reminderTimer,
       formattedDate,
       image,
       creatorName,
@@ -69,7 +79,7 @@ const AddHabit = () => {
     <div className="py-16 px-4 bg-gray-50 min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
         <div className="text-center mb-6">
-          <PlusCircle className="mx-auto w-10 h-10 text-indigo-500" />
+          <PlusCircle className="mx-auto w-10 h-10 text-pink-500" />
           <h2 className="text-3xl font-bold text-gray-800 mt-2">Add Habit</h2>
         </div>
 
@@ -121,6 +131,27 @@ const AddHabit = () => {
                 <option>Evening</option>
                 <option>Study</option>
               </select>
+            </div>
+          </div>
+
+          {/* Reminder Time */}
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Reminder Time
+            </label>
+
+            <div className="relative">
+              <input
+                type="time"
+                name="time"
+                //value={time}
+                //onChange={onChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 pl-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400"
+              />
+              <Clock
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                size={18}
+              />
             </div>
           </div>
 
@@ -177,7 +208,7 @@ const AddHabit = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 transition-all"
+            className="btn w-full bg-pink-500 hover:bg-pink-600 text-white border-none flex items-center gap-2"
           >
             Add Habit
           </button>

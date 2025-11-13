@@ -162,7 +162,7 @@ const Card = ({ habit, handleDeleteBid }) => {
           <div className="flex flex-wrap justify-between mt-4">
             <button
               onClick={handelUpdate}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition"
+              className="btn btn-sm bg-pink-500 hover:bg-pink-600 text-white border-none flex items-center gap-2"
             >
               <Pencil className="w-4 h-4" /> Update
             </button>

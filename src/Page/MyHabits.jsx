@@ -16,7 +16,7 @@ const MyHabits = () => {
   const { user } = use(AuthContext);
   const axiosSecure = useAxiosSecure();
 
-  console.log(habits);
+  //console.log(habits);
 
   useEffect(() => {
     axiosSecure.get(`/habits?email=${user?.email}`).then((data) => {
@@ -94,16 +94,6 @@ const MyHabits = () => {
           ))}
         </div>
       )}
-
-      {/* <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
-        {habits.map((habit) => (
-          <Card
-            key={habit._id}
-            handleDeleteBid={handleDeleteBid}
-            habit={habit}
-          ></Card>
-        ))}
-      </div> */}
     </div>
   );
 };

@@ -4,30 +4,31 @@ import { Link, useLocation, useNavigate } from "react-router";
 
 import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { singInUser, singInWithGoogle } = useContext(AuthContext);
-  const [errors, setErrors] = useState([]);
+  //const [errors, setErrors] = useState([]);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const validatePassword = (value) => {
-    const newErrors = [];
+  // const validatePassword = (value) => {
+  //   const newErrors = [];
 
-    if (value.length < 6)
-      newErrors.push("Password must be at least 6 characters long");
-    if (!/[A-Z]/.test(value))
-      newErrors.push("Must contain at least one uppercase letter");
-    if (!/[a-z]/.test(value))
-      newErrors.push("Must contain at least one lowercase letter");
+  //   if (value.length < 6)
+  //     newErrors.push("Password must be at least 6 characters long");
+  //   if (!/[A-Z]/.test(value))
+  //     newErrors.push("Must contain at least one uppercase letter");
+  //   if (!/[a-z]/.test(value))
+  //     newErrors.push("Must contain at least one lowercase letter");
 
-    setErrors(newErrors);
-  };
+  //   setErrors(newErrors);
+  // };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setPassword(value);
-    validatePassword(value);
+    //validatePassword(value);
   };
 
   const location = useLocation();
@@ -41,26 +42,52 @@ const Login = () => {
     singInUser(email, password)
       .then((result) => {
         e.target.reset();
-        toast.success("User login successfully!");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User login successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         navigate(location?.state || "/");
       })
       .catch((error) => {
         //console.log(error);
-        toast.error("Something went wrong!");
-        window.location.reload();
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Something went wrong!!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        e.target.reset();
       });
   };
 
   const handelGoogleSingIn = () => {
     singInWithGoogle()
       .then((result) => {
-        toast.success("User login successfully!");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User login successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(location?.state || "/");
       })
       .catch((e) => {
         //console.log(e);
-        toast.error("Something went wrong!");
-        window.location.reload();
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          timer: 1500,
+        });
+
+        //window.location.reload();
       });
   };
 
@@ -69,7 +96,7 @@ const Login = () => {
       <div className="w-full max-w-md bg-white shadow-md my-15 rounded-2xl p-8">
         {/* Header */}
         <div className="text-center mb-6">
-          <LogIn className="w-10 h-10 mx-auto text-indigo-500" />
+          <LogIn className="w-10 h-10 mx-auto text-pink-500" />
           <h1 className="text-3xl font-bold text-gray-800 mt-2">
             Login to your account
           </h1>
@@ -124,13 +151,13 @@ const Login = () => {
           </div>
 
           {/* Error Messages */}
-          {errors.length > 0 && (
+          {/* {errors.length > 0 && (
             <ul className="text-sm text-red-500 space-y-1">
               {errors.map((error, i) => (
                 <li key={i}>⚠️ {error}</li>
               ))}
             </ul>
-          )}
+          )} */}
 
           {/* Submit Button */}
           <button
@@ -183,7 +210,7 @@ const Login = () => {
         {/* Sign Up Link */}
         <div className="text-center mt-4 text-sm text-gray-600">
           Don’t have an account?{" "}
-          <Link to="/signup" className="text-indigo-500 hover:underline">
+          <Link to="/singUp" className="text-indigo-500 hover:underline">
             Sign up
           </Link>
         </div>

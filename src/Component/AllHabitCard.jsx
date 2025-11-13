@@ -27,7 +27,7 @@ const AllHabitCard = ({ habit }) => {
         {/* 🔹 Button */}
         <div className="pt-3">
           <Link to={`/see/${habit._id}`}>
-            <button className="flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition">
+            <button className="btn w-full bg-pink-500 hover:bg-pink-600 text-white border-none flex items-center gap-2">
               See Details
               <ArrowRightCircle className="w-4 h-4" />
             </button>

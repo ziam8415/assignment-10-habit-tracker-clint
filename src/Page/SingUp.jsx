@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router";
 
 import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SingUp = () => {
   const { createUserEP, singInWithGoogle } = use(AuthContext);
@@ -50,11 +51,27 @@ const SingUp = () => {
       .then((result) => {
         //console.log(result.user);
         e.target.reset();
-        toast.success("User sing up successfully!");
-        navigate("/");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User login successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         //console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Something went wrong!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        e.target.reset();
       });
   };
 
@@ -62,20 +79,34 @@ const SingUp = () => {
     singInWithGoogle()
       .then((result) => {
         //console.log(result);
-        toast.success("User login successfully!");
-        navigate("/");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User login successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(location?.state || "/");
       })
       .catch((e) => {
         //console.log(e);
-        toast.error("Something went wrong!");
-        window.location.reload();
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Something went wrong!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        //window.location.reload();
       });
   };
   return (
     <div className="flex justify-center items-center flex-col pt-5 pb-10">
-      <h1 className="text-5xl text-gray-800 font-bold pb-5">Sign Up!</h1>
-
       <div className="card border bg-base-100 w-full max-w-sm shrink-0 pt-10 shadow-2xl rounded-2xl">
+        <h1 className="text-4xl text-center text-pink-500 font-bold pb-5">
+          Sign Up!
+        </h1>
         <div className="card-body">
           <form onSubmit={handelSingUp}>
             <fieldset className="fieldset space-y-3">

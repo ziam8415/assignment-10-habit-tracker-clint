@@ -61,6 +61,17 @@ const Footer = () => {
           </a>
         </div>
       </div>
+      <div className="flex flex-wrap justify-center  gap-4 text-sm text-gray-500">
+        <a href="/terms" className="hover:text-gray-800 transition">
+          Terms & Conditions
+        </a>
+        <a href="/privacy" className="hover:text-gray-800 transition">
+          Privacy Policy
+        </a>
+        <a href="/contact" className="hover:text-gray-800 transition">
+          Contact Us
+        </a>
+      </div>
 
       <div className="border-t border-gray-200 text-center py-4 text-sm text-gray-500">
         © {new Date().getFullYear()} HabitFlow. All rights reserved.

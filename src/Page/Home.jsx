@@ -15,7 +15,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/newestHabits")
+    fetch("https://habit-server-seven.vercel.app/newestHabits")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

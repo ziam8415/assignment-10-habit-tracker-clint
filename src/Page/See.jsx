@@ -42,7 +42,7 @@ const See = () => {
     const update = { completionHistory: completeHistory };
     //console.log("mark clicked", date, history, update);
 
-    fetch(`http://localhost:3000/habits/${data._id}`, {
+    fetch(`https://habit-server-seven.vercel.app/habits/${data._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

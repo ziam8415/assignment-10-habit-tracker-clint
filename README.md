@@ -1,16 +1,41 @@
-# React + Vite
+🌿 HabitFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Site URL: https://habit-flow-zz.netlify.app
 
-Currently, two official plugins are available:
+HabitFlow is a habit tracking web application that helps users build and maintain positive daily routines. Users can create, track, and manage habits easily — staying motivated every day.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
 
-## React Compiler
+🌱 Add and Manage Habits: Users can create new habits with titles, descriptions, and categories.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+📅 Track Progress: View, update, and delete habits directly from the dashboard.
 
-## Expanding the ESLint configuration
+🔍 Search and Filter: Quickly find habits by name or category for easy organization.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🧠 User Authentication: Secure login and signup using Firebase authentication (email & Google).
+
+📊 Dynamic Habit Feed: Displays the newest and most popular habits dynamically from the database.
+
+🛠️ Technologies Used
+
+- React.js (Frontend)
+
+- Tailwind CSS & DaisyUI (UI Styling)
+
+- Lucide React Icons (Modern minimal icons)
+
+- Firebase Authentication (User Auth)
+
+- MongoDB & Express.js (Backend)
+
+- Netlify (Deployment)
+
+📸 Live Preview
+
+🔗 Live Website: HabitFlow on Netlify
+
+🖥️ Server API: https://habit-server-seven.vercel.app
+
+💡 About the Project
+
+HabitFlow helps you build better habits, one day at a time. You can organize your tasks, stay consistent, and see your progress. The app is designed with simplicity, motivation, and usability in mind — ideal for daily routine tracking.

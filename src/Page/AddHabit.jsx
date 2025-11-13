@@ -48,7 +48,7 @@ const AddHabit = () => {
 
     console.log(habit);
 
-    fetch("http://localhost:3000/addHabit", {
+    fetch("https://habit-server-seven.vercel.app/addHabit", {
       method: "POST",
       headers: {
         "content-type": "application/json",

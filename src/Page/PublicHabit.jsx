@@ -9,7 +9,7 @@ const PublicHabit = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/allHabits")
+    fetch("https://habit-server-seven.vercel.app/allHabits")
       .then((res) => res.json())
       .then((data) => {
         setAllHabits(data);
@@ -21,7 +21,7 @@ const PublicHabit = () => {
 
   const handelCategory = (category) => {
     console.log(category);
-    fetch(`http://localhost:3000/allHabits/${category}`)
+    fetch(`https://habit-server-seven.vercel.app/allHabits/${category}`)
       .then((res) => res.json())
       .then((data) => setAllHabits(data));
   };
@@ -30,7 +30,7 @@ const PublicHabit = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     console.log(searchText);
-    fetch(`http://localhost:3000/search?search=${searchText}`)
+    fetch(`https://habit-server-seven.vercel.app/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setAllHabits(data);

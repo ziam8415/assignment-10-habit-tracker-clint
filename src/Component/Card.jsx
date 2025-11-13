@@ -48,7 +48,7 @@ const Card = ({ habit, handleDeleteBid }) => {
     const update = { completionHistory: completeHistory };
     //console.log("mark clicked", date, history, update);
 
-    fetch(`http://localhost:3000/habits/${habit._id}`, {
+    fetch(`https://habit-server-seven.vercel.app/habits/${habit._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -102,7 +102,7 @@ const Card = ({ habit, handleDeleteBid }) => {
     };
     console.log(updateHabit);
 
-    fetch(`http://localhost:3000/habits/${habit._id}`, {
+    fetch(`https://habit-server-seven.vercel.app/habits/${habit._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

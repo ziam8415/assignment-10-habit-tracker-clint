@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
+import { PlusCircle, Image, BookOpen, Tag, Mail, User } from "lucide-react";
 
 const AddHabit = () => {
   const { user } = use(AuthContext);
@@ -65,113 +66,118 @@ const AddHabit = () => {
   //https://i.ibb.co.com/1tJkmKtq/download-16.jpg
 
   return (
-    <div className="py-20">
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-2xl p-6 ">
-        <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">
-          Add Habit
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="py-16 px-4 bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
+        <div className="text-center mb-6">
+          <PlusCircle className="mx-auto w-10 h-10 text-indigo-500" />
+          <h2 className="text-3xl font-bold text-gray-800 mt-2">Add Habit</h2>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
           {/* Habit Title */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               Habit Title
             </label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter habit title"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-              required
-            />
+            <div className="relative">
+              <BookOpen className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                name="title"
+                placeholder="Enter habit title"
+                className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                required
+              />
+            </div>
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               Description
             </label>
             <textarea
               name="description"
               placeholder="Describe your habit..."
               rows="3"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               Category
             </label>
-            <select
-              name="category"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-            >
-              <option>Morning</option>
-              <option>Work</option>
-              <option>Fitness</option>
-              <option>Evening</option>
-              <option>Study</option>
-            </select>
+            <div className="relative">
+              <Tag className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <select
+                name="category"
+                className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              >
+                <option>Morning</option>
+                <option>Work</option>
+                <option>Fitness</option>
+                <option>Evening</option>
+                <option>Study</option>
+              </select>
+            </div>
           </div>
 
-          {/* Reminder Time */}
-          {/* <div>
-          <label className="block text-xl font-medium text-gray-700 mb-1">
-            Date
-          </label>
-          <input
-            type="date"
-            name="date"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-          />
-        </div> */}
-
-          {/* Upload Image URL */}
+          {/* Image URL */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
-              Upload Image (URL)
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Image URL
             </label>
-            <input
-              type="url"
-              name="imageUrl"
-              placeholder="Paste image link here"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-            />
+            <div className="relative">
+              <Image className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <input
+                type="url"
+                name="imageUrl"
+                placeholder="Paste image link here"
+                className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+              />
+            </div>
           </div>
 
-          {/* User Email  */}
+          {/* User Email */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               User Email
             </label>
-            <input
-              type="email"
-              name="email"
-              value={user.email}
-              readOnly
-              className="w-full border border-gray-200 bg-[#FCF5EE] rounded-lg px-3 py-2 text-gray-500 cursor-not-allowed"
-            />
+            <div className="relative">
+              <Mail className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <input
+                type="email"
+                name="email"
+                value={user?.email}
+                readOnly
+                className="w-full border border-gray-200 bg-gray-100 rounded-lg pl-10 pr-3 py-2 text-gray-500 cursor-not-allowed"
+              />
+            </div>
           </div>
 
           {/* User Name */}
           <div>
-            <label className="block text-xl font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-600 mb-1">
               User Name
             </label>
-            <input
-              type="text"
-              name="name"
-              value={user.displayName}
-              readOnly
-              className="w-full border border-gray-200 bg-[#FCF5EE] rounded-lg px-3 py-2 text-gray-500 cursor-not-allowed"
-            />
+            <div className="relative">
+              <User className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                name="name"
+                value={user?.displayName}
+                readOnly
+                className="w-full border border-gray-200 bg-gray-100 rounded-lg pl-10 pr-3 py-2 text-gray-500 cursor-not-allowed"
+              />
+            </div>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#FFC4C4] text-gray-800 font-bold py-2 rounded-lg hover:bg-[#efbfc3] transition"
+            className="w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 transition-all"
           >
             Add Habit
           </button>

@@ -70,7 +70,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Right Section - User or Auth Buttons */}
+        {/* Right Section  */}
         <div className="flex items-center gap-3">
           {loading ? (
             <span className="loading loading-dots loading-sm"></span>
@@ -94,10 +94,12 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content menu bg-white border rounded-xl w-56 mt-3 shadow-md p-2"
               >
-                <li className="text-gray-700 font-semibold">
+                <li className="text-gray-700 text-center font-semibold">
                   {user.displayName}
                 </li>
-                <li className="text-gray-500 text-sm">{user.email}</li>
+                <li className="text-gray-500 text-center text-sm">
+                  {user.email}
+                </li>
                 <li
                   onClick={handelSingOut}
                   className="text-red-500 hover:bg-red-50 rounded-lg flex items-center gap-2 mt-2 cursor-pointer"
@@ -139,9 +141,11 @@ const Navbar = () => {
                   <NavLink to="/" className="hover:text-pink-500">
                     Home
                   </NavLink>
+                  <br />
                   <NavLink to="/allHabits" className="hover:text-pink-500">
                     All Habits
                   </NavLink>
+                  <br />
                   <NavLink to="/addHabit" className="hover:text-pink-500">
                     Add Habit
                   </NavLink>
